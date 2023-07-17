@@ -13,7 +13,7 @@ public class MensajeService {
         this.producer = producer;
     }
 
-    private String topicMensaje = "mensajes";
+    private String topicMensaje = "test_topic";
 
     public void publish(Mensaje mensaje){
         this.producer.send(topicMensaje, mensaje);
