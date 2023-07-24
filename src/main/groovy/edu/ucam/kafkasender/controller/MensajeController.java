@@ -2,6 +2,7 @@ package edu.ucam.kafkasender.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.ucam.kafkasender.entity.EventoDTO;
 import edu.ucam.kafkasender.entity.Mensaje;
 import edu.ucam.kafkasender.services.MensajeService;
 import org.springframework.amqp.rabbit.annotation.EnableRabbit;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 @EnableRabbit
@@ -27,15 +29,15 @@ public class MensajeController {
     ObjectMapper objectMapper = new ObjectMapper();
 
     @PostMapping("/enviar")
-    public Mensaje save(){
-        Mensaje mensaje = new Mensaje();
-        mensaje.setId("1");
-        mensaje.setDate(new Date());
-        mensaje.setMensaje("Primer mensaje transmitido en kafka");
+    public EventoDTO save(){
+        EventoDTO enventoDTO = new EventoDTO();
+        enventoDTO.setId("001");
+        enventoDTO.setVersion(1L);
+//        enventoDTO.setFecha(new Timestamp());
+//        enventoDTO.setData();
 
-        mensajeService.publish(mensaje);
-
-        return mensaje;
+        mensajeService.publish(enventoDTO);
+        return enventoDTO;
     }
 
     @PostMapping("/sendMapping")
