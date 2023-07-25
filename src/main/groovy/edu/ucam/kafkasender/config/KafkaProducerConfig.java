@@ -9,7 +9,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
