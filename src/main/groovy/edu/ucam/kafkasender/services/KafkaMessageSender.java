@@ -2,11 +2,15 @@ package edu.ucam.kafkasender.services;
 
 import edu.ucam.kafkasender.interfaces.MessageSender;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaMessageSender implements MessageSender {
+
+    @Value("${kafka.topic.name}")
+    private String kafkaTopic;
 
     private final KafkaTemplate<String, String> producer;
 
@@ -17,7 +21,6 @@ public class KafkaMessageSender implements MessageSender {
 
     @Override
     public void sendMessage(String message) {
-        String topicMensaje = "test_topic";
-        producer.send(topicMensaje, message);
+        producer.send(kafkaTopic, message);
     }
 }
